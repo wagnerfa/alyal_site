@@ -1,0 +1,227 @@
+/* Importando fontes do index.css */
+@import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&family=Orbitron:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+button#add-user-btn {
+    background-color: #FFD535;
+    /* Cores consistentes com o index.html */
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: background-color 0.3s;
+    border: none;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+button#add-user-btn:hover {
+    background-color: #f0c419;
+    /* Efeito hover */
+}
+
+#users-table {
+    border-collapse: collapse;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Sombra semelhante à usada nos formulários de index.html */
+}
+
+#users-table thead th {
+    background-color: #343a40;
+    /* Mantendo o estilo original de admin_usuarios.css */
+    color: #fff;
+    padding: 10px;
+    text-transform: uppercase;
+    /* Títulos em maiúsculas como no index.html */
+}
+
+#users-table tbody tr {
+    background-color: #ffffff;
+    color: #333;
+}
+
+#users-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#users-table tbody tr:hover {
+    background-color: #ddd;
+}
+
+
+/* Adicionando um pouco de espaço e estilização para respirar */
+.admin-content {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    margin-top: 20px;
+}
+
+/* Estilização do DataTables - área de controle de pesquisa e paginação */
+.dataTables_filter,
+.dataTables_paginate {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dataTables_filter label {
+    float: right;
+    margin-left: 10px;
+}
+
+.dataTables_paginate {
+    float: right;
+}
+
+/* Ajustes para espaçamento e alinhamento */
+.dataTables_wrapper .dataTables_info {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter {
+    padding-top: 20px;
+    /* Espaçamento superior para separar dos elementos acima */
+    padding-bottom: 20px;
+    /* Espaçamento inferior para separar dos elementos abaixo */
+}
+
+/* Estilização dos botões de paginação para melhor visibilidade e espaço */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    /* Adiciona borda para destacar */
+    background-color: #f8f9fa;
+    /* Cor de fundo */
+    border-radius: 5px;
+    /* Borda arredondada */
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background-color: #ffd535;
+    /* Cor ao passar o mouse */
+    color: #333;
+}
+
+/* Ajustar a distância entre os botões e a caixa de pesquisa */
+.dataTables_filter {
+    clear: both;
+    /* Assegura que não haverá sobreposição se a largura for pequena */
+    margin-right: 20px;
+    /* Espaço à direita */
+}
+
+/* Adicionando espaço ao redor da tabela para evitar que elementos fiquem muito próximos das bordas */
+#users-table {
+    margin: 20px 0;
+    /* Espaço acima e abaixo da tabela */
+}
+
+.dataTables_length {
+    display: none;
+}
+
+.dataTables_info {
+    display: none;
+}
+
+.btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    color: white;
+    font-size: 14px;
+}
+
+.btn-primary {
+    background-color: #f0c419;
+    text-decoration: none;
+    font-weight: bolder;
+}
+
+.btn-primary:hover {
+    background-color: rgb(17, 172, 17);
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.5);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    text-decoration: none;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(0, 123, 255, 0.5);
+    box-shadow: 0 2px 5px rgba(108, 117, 125, 0.5);
+}
+
+.btn-danger {
+    background-color: red;
+}
+
+/* Modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 3% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%;
+    height: 80%;
+    border-radius: 15px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content form{
+    display: grid;
+}
+
+.modal-content form label{
+    margin: 10px 0;
+}
+
+.modal-content form select{
+    margin-bottom: 35px;
+    height: 40px;
+}
+
+.modal-content form input{
+    padding: 4px 2px;
+}
+
+.user-name{
+    cursor: pointer;
+}
+
+table{
+    text-align: center;
+}

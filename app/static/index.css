@@ -1,0 +1,475 @@
+@import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&family=Orbitron:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Calibri;
+    zoom: 1.01;
+}
+
+/* Animação de fade-in */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+h1 {
+    font-family: "Montserrat", sans-serif;
+}
+
+.container1 {
+    padding: 0 100px;
+    color: black;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: lighter;
+    text-align: justify;
+}
+
+.c1 {
+    margin-left: 100px;
+}
+
+.c1 h1 {
+    font-size: 50px;
+    text-transform: uppercase;
+}
+
+.c1 h2 {
+    margin-bottom: 35px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 28px;
+    text-transform: uppercase;
+}
+
+.c1 h3 {
+    color: #FECB00;
+    font-weight: bolder;
+    -webkit-text-stroke-width: 0.5px; /* largura da borda */
+    -webkit-text-stroke-color: #000; /* cor da borda */
+}
+
+
+.c2 img {
+    width: 100%;
+    height: auto;
+}
+
+.container2 {
+    background-color: #131313;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+    height: 450px;
+    font-weight: lighter;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.container2 h1 {
+    color: #FECB00;
+    margin-top: 60px;
+}
+
+.cc1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.modulos {
+    margin: 50px 0;
+}
+
+.modulos span {
+    color: #FECB00;
+    font-size: 26px;
+}
+
+.cc2 {
+    text-align: left;
+    width: 400px;
+}
+
+.cc2 p {
+    margin-top: 30px;
+}
+
+.container3 {
+    background-color: #2E332F;
+    padding: 20px;
+    color: white;
+    height: 500px;
+    text-align: center;
+}
+
+.sobre {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.textoSobre {
+    width: 700px;
+    margin-top: 50px;
+    text-align: justify;
+    font-weight: lighter;
+}
+
+footer {
+    background-color: #09090d;
+    color: #d9d9d9;
+    padding: 20px;
+    text-align: center;
+}
+
+header {
+
+    padding: 10px 0;
+    position: relative;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5em;
+    font-weight: lighter;
+}
+
+nav {
+    display: flex;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li a {
+    color: black;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li a:hover {
+    font-weight: bold;
+    color: #FECB00;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    margin: 5px;
+}
+
+.container4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background-color: #eeeded;
+}
+
+.container4 h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.pre-inscricao-form{
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: 400px;
+}
+
+.mensagemSucesso{
+    min-height: 300px;
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.mensagemSucesso span{
+    font-size: 90px;
+    color: #FECB00;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form div {
+    display: flex;
+    flex-direction: column;
+}
+
+form h2 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #FFD535;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #f0c419;
+}
+
+/* Seção de FAQs */
+.container5 {
+    background-color: #f9f9f9;
+    padding: 40px;
+    text-align: center;
+}
+
+.container5 h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.faq-item {
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    width: 500px;
+    height: 70px;
+}
+
+.faq-item h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.faq-item h2 .material-symbols-outlined {
+    margin-right: 10px;
+}
+
+.faq-item p {
+    font-size: 16px;
+    color: #666;
+    margin: 0;
+}
+
+.faqs {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Footer */
+footer {
+    background-color: #09090d;
+    color: #d9d9d9;
+    padding: 40px 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 300px;
+    margin: 10px;
+}
+
+.footer-container h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.footer-container p {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.footer-container a {
+    color: #FFD535;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-container a:hover {
+    text-decoration: underline;
+}
+
+.footer-social {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.footer-social a {
+    color: #FFD535;
+    font-size: 24px;
+    margin: 0 10px;
+}
+
+
+
+@media (max-width: 768px) {
+    footer {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .footer-container {
+        max-width: 100%;
+    }
+
+    .faq-item h2 {
+        font-size: 18px;
+    }
+
+    .faq-item p {
+        font-size: 14px;
+    }
+
+    .faq-item{
+        width: 93%;
+    }
+
+    * {
+        zoom: 0.96;
+    }
+
+    .container1 {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .c1 {
+        margin: 0;
+        max-width: 100%;
+    }
+
+    .c2 {
+        margin-top: 20px;
+        width: 100%;
+        max-width: 400px;
+        height: auto;
+    }
+
+
+    .hamburger {
+        display: flex;
+        position: absolute;
+        right: 20px;
+
+    }
+
+    nav ul {
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 5px;
+        width: 200px;
+        display: none;
+        text-align: center;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    nav.active ul {
+        display: flex;
+    }
+
+    .container2 {
+        display: block;
+        height: 100%;
+    }
+
+    .container3,
+    .sobre {
+        display: grid;
+        height: 100%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .textoSobre {
+        width: 500px;
+    }
+
+    .faqs{
+        display: block;
+    }
+}

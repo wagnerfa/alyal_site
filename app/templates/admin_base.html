@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Alyal</title>
+    <link rel="stylesheet" href="../static/admin.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Lista de ícones disponíveis
+            var favicons = [
+                '../static/heart.png',
+                '../static/heart.png',
+                '../static/heart.png',
+                '../static/heart.png',
+                '../static/heart.png',
+                '../static/broken_heart.png'
+            ];
+
+            // Escolhe um ícone aleatoriamente
+            var randomFavicon = favicons[Math.floor(Math.random() * favicons.length)];
+
+            // Cria a tag link do favicon
+            var link = document.createElement('link');
+            link.rel = 'icon';
+            link.type = 'image/png';
+            link.href = randomFavicon;
+
+            // Adiciona a tag link ao head
+            document.head.appendChild(link);
+        });
+    </script>
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="{{ url_for('static', filename='wagnerFundoAmarelo.png') }}" alt="Profile Picture">
+                <h2>Wagner Andrade</h2>
+                <a href="{{url_for('main.logout')}}">
+                    <span class="material-symbols-outlined">
+                        logout
+                        </span>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="{{ 'active' if request.path == url_for('main.admin') else '' }}"><a href="{{ url_for('main.admin') }}">Início</a></li>
+                    <li><a href="#">Alertas</a></li>
+                    <li class="{{ 'active' if request.path == url_for('main.admin_pre_inscricoes') or request.path == url_for('main.admin_pre_inscricoes_arquivadas') else '' }}"><a href="{{ url_for('main.admin_pre_inscricoes') }}">Pré-Inscrições</a></li>
+                    <li><a href="#">Material de apoio</a></li>
+                    <li class="{{ 'active' if request.path == url_for('main.admin_usuarios') else '' }}"><a href="{{ url_for('main.admin_usuarios') }}">Usuários</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="admin-main">
+            <section class="admin-content">
+                {% block content %}
+                <!-- Conteúdo dinâmico aqui -->
+                {% endblock %}
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

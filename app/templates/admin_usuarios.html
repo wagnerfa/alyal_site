@@ -1,0 +1,211 @@
+{% extends "admin_base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="../static/admin_usuarios.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+{% endblock %}
+
+{% block content %}
+<h2 style="text-align: end;">Gerenciar Usuários</h2>
+<button id="add-user-btn">+ Novo</button>
+
+<table id="users-table" class="display">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+            <th>Matrícula</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for usuario in usuarios %}
+        <tr data-id="{{ usuario.id }}">
+            <td class="user-name">{{ usuario.nome }}</td>
+            <td>{{ usuario.email }}</td>
+            <td>{{ usuario.telefone }}</td>
+            <td>{{ usuario.matricula }}</td>
+            <td>{{ 'Admin' if usuario.is_admin else 'Ativo' }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Modal para adicionar usuário -->
+<div id="addUserModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Novo Usuário</h2>
+        <form id="addUserForm">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="telefone">Telefone:</label>
+            <input type="text" id="telefone" name="telefone">
+
+            <label for="observacao">Observação:</label>
+            <textarea id="observacao" name="observacao" rows="5"></textarea>
+
+            <label for="status">Status:</label>
+            <select id="status" name="status" required>
+                <option value="ativo">Ativo</option>
+                <option value="inativo">Inativo</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
+    </div>
+</div>
+
+<!-- Modal para editar/excluir usuário -->
+<div id="editUserModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Editar Usuário</h2>
+        <form id="editUserForm">
+            <input type="hidden" id="edit-id" name="id">
+            
+            <label for="edit-nome">Nome:</label>
+            <input type="text" id="edit-nome" name="nome" required>
+
+            <label for="edit-email">Email:</label>
+            <input type="email" id="edit-email" name="email" required>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+                <div style="flex: 1; margin-right: 10px;">
+                    <label for="edit-telefone">Telefone:</label>
+                    <input type="text" id="edit-telefone" name="telefone">
+                </div>
+                <div style="flex: 1; margin-left: 10px;">
+                    <label for="edit-data-inscricao">Data de Inscrição:</label>
+                    <input style="padding: 5px;" type="text" id="edit-data-inscricao" name="data_inscricao" readonly>
+                </div>
+            </div>
+
+            <label for="edit-observacao">Observação:</label>
+            <textarea id="edit-observacao" name="observacao" rows="5"></textarea>
+
+            <label for="edit-status">Status:</label>
+            <select id="edit-status" name="status" required>
+                <option value="ativo">Ativo</option>
+                <option value="inativo">Inativo</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <div style="display: flex; justify-content: space-around;">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <button type="button" id="delete-user-btn" class="btn btn-danger">Excluir</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Modal logic
+    var addUserModal = document.getElementById("addUserModal");
+    var editUserModal = document.getElementById("editUserModal");
+    var btn = document.getElementById("add-user-btn");
+    var closeBtns = document.getElementsByClassName("close");
+
+    btn.onclick = function () {
+        addUserModal.style.display = "block";
+    }
+
+    Array.from(closeBtns).forEach(function (btn) {
+        btn.onclick = function () {
+            addUserModal.style.display = "none";
+            editUserModal.style.display = "none";
+        }
+    });
+
+    window.onclick = function (event) {
+        if (event.target == addUserModal) {
+            addUserModal.style.display = "none";
+        } else if (event.target == editUserModal) {
+            editUserModal.style.display = "none";
+        }
+    }
+
+    // Form submit logic
+    document.getElementById("addUserForm").onsubmit = async function (event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        const response = await fetch('/admin/usuarios', {
+            method: 'POST',
+            body: formData
+        });
+        const result = await response.json();
+        if (result.success) {
+            location.reload();
+        } else {
+            alert('Erro ao criar usuário: ' + result.error);
+        }
+    }
+
+    // Open edit modal with user data
+    document.querySelectorAll('.user-name').forEach(function (element) {
+        element.onclick = async function () {
+            const userId = this.parentElement.getAttribute('data-id');
+            const response = await fetch(`/admin/usuarios/${userId}`);
+            const result = await response.json();
+            if (result.success) {
+                const user = result.user;
+                document.getElementById('edit-id').value = user.id;
+                document.getElementById('edit-nome').value = user.nome;
+                document.getElementById('edit-email').value = user.email;
+                document.getElementById('edit-telefone').value = user.telefone;
+                document.getElementById('edit-data-inscricao').value = new Date(user.data_inscricao).toLocaleString('pt-BR');
+                document.getElementById('edit-observacao').value = user.observacao;
+                document.getElementById('edit-status').value = user.is_admin ? 'admin' : (user.ativo ? 'ativo' : 'inativo');
+                editUserModal.style.display = "block";
+            } else {
+                alert('Erro ao carregar informações do usuário: ' + result.error);
+            }
+        }
+    });
+
+    // Edit user form submit logic
+    document.getElementById("editUserForm").onsubmit = async function (event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        const userId = document.getElementById('edit-id').value;
+        const response = await fetch(`/admin/usuarios/${userId}`, {
+            method: 'PUT',
+            body: formData
+        });
+        const result = await response.json();
+        if (result.success) {
+            location.reload();
+        } else {
+            alert('Erro ao atualizar usuário: ' + result.error);
+        }
+    }
+
+    // Delete user button logic
+    document.getElementById("delete-user-btn").onclick = async function () {
+        const userId = document.getElementById('edit-id').value;
+        const response = await fetch(`/admin/usuarios/${userId}`, {
+            method: 'DELETE'
+        });
+        const result = await response.json();
+        if (result.success) {
+            location.reload();
+        } else {
+            alert('Erro ao excluir usuário: ' + result.error);
+        }
+    }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#users-table').DataTable();
+    });
+</script>
+{% endblock %}

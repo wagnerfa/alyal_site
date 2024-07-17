@@ -1,0 +1,56 @@
+{% extends "admin_base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='admin_preInscricao.css') }}">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+{% endblock %}
+
+{% block content %}
+<h2 style="text-align: end;">Gerenciar Pré-Inscrições</h2>
+<a href="{{ url_for('main.admin_pre_inscricoes') }}" class="btn btn-primary">Ativas</a>
+<a href="{{ url_for('main.admin_pre_inscricoes_arquivadas') }}" class="btn btn-secondary">Arquivadas</a>
+
+<table id="pre-inscricoes-table" class="display">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+            <th>Data da Inscrição</th>
+            <th>Arquivar</th>
+            <th>Excluir</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for inscricao in pre_inscricoes %}
+        <tr>
+            <td>{{ inscricao.nome }}</td>
+            <td>{{ inscricao.email }}</td>
+            <td>{{ inscricao.telefone }}</td>
+            <td>{{ inscricao.data_inscricao.strftime('%d/%m/%Y') }}</td>
+            <td>
+                {% if not inscricao.arquivado %}
+                <form action="{{ url_for('main.arquivar_pre_inscricao', id=inscricao.id) }}" method="post">
+                    <button type="submit" class="btn btn-secondary">Arquivar</button>
+                </form>
+                {% endif %}
+            </td>
+            <td>
+                <form action="{{ url_for('main.excluir_pre_inscricao', id=inscricao.id) }}" method="post">
+                    <button type="submit" class="btn btn-danger">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#pre-inscricoes-table').DataTable();
+    });
+</script>
+{% endblock %}
