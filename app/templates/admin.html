@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Alyal</title>
+    <link rel="stylesheet" href="../static/admin.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var favicons = [
+                '../static/heart.png',
+                '../static/heart.png',
+                '../static/heart.png',
+                '../static/heart.png',
+                '../static/broken_heart.png'
+            ];
+            var randomFavicon = favicons[Math.floor(Math.random() * favicons.length)];
+            var link = document.createElement('link');
+            link.rel = 'icon';
+            link.type = 'image/png';
+            link.href = randomFavicon;
+            document.head.appendChild(link);
+        });
+    </script>
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="{{ url_for('static', filename='wagnerFundoAmarelo.png') }}" alt="Profile Picture">
+                <h2>Wagner Andrade</h2>
+                <a href="{{url_for('main.logout')}}">
+                    <span class="material-symbols-outlined">
+                        logout
+                    </span>
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="{{ 'active' if request.path == url_for('main.admin') else '' }}">
+                        <a href="{{ url_for('main.admin') }}">Início</a>
+                    </li>
+                    <li><a href="#">Alertas</a></li>
+                    <li class="{{ 'active' if request.path == url_for('main.admin_pre_inscricoes') or request.path == url_for('main.admin_pre_inscricoes_arquivadas') else '' }}">
+                        <a href="{{ url_for('main.admin_pre_inscricoes') }}">Pré-Inscrições</a>
+                    </li>
+                    <li><a href="#">Material de apoio</a></li>
+                    <li class="{{ 'active' if request.path == url_for('main.admin_usuarios') else '' }}">
+                        <a href="{{ url_for('main.admin_usuarios') }}">Usuários</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="admin-main">
+            <section class="admin-content">
+                <div style="display: flex; align-items: center; justify-content: space-around;">
+                    <h3>Lembretes</h3>
+                    <span class="material-symbols-outlined" id="addLembrete" style="cursor: pointer;">
+                        add
+                    </span>
+                </div>
+
+                
+                <table>
+                    <thead>
+                        <th>Título</th>
+                        <th>Descrição</th>
+                        <th>Data</th>
+                        <th class="botaoExcluir"></th>
+                    </thead>
+                    {% for lembrete in lembretes %}
+                    <tbody>
+                        <td>{{ lembrete.titulo }}</td>
+                        <td style="width: 700px;">{{ lembrete.descricao }}</td>
+                        <td>{{ lembrete.data_lembrete.strftime('%d/%m/%Y') }}</td>
+                        <td class="botaoExcluir">
+                            <form method="POST" action="{{ url_for('main.admin') }}" style="display:inline;">
+                                <input type="hidden" name="excluir" value="{{ lembrete.id }}">
+                                <button type="submit">Excluir</button>
+                            </form>
+                        </td>
+                    </tbody>
+                    {% endfor %}
+                </table>
+                
+                {% block content %}
+                {% endblock %}
+            </section>
+        </main>
+    </div>
+
+    <div id="modalLembrete" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form method="POST" action="{{ url_for('main.admin') }}">
+                <div>
+                    <label for="titulo">Título:</label>
+                    <input type="text" id="titulo" name="titulo" required>
+                </div>
+                <div>
+                    <label for="descricao">Descrição:</label>
+                    <textarea id="descricao" name="descricao" required></textarea>
+                </div>
+                <div>
+                    <label for="data_lembrete">Data do Lembrete (YYYY-MM-DDTHH:MM):</label>
+                    <input type="datetime-local" id="data_lembrete" name="data_lembrete" required>
+                </div>
+                <button type="submit">Adicionar Lembrete</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var modal = document.getElementById("modalLembrete");
+            var btn = document.getElementById("addLembrete");
+            var span = document.getElementsByClassName("close")[0];
+
+            btn.onclick = function () {
+                modal.style.display = "block";
+            }
+
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        });
+    </script>
+</body>
+</html>

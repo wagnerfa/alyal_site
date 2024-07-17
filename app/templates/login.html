@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Alyal</title>
+    <link rel="stylesheet" href="../static/login.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght@24,400,0,0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Lista de ícones disponíveis
+            var favicons = [
+                '../static/heart.png',
+                '../static/heart.png',
+                '../static/heart.png',
+                '../static/heart.png',
+                '../static/heart.png',
+                '../static/broken_heart.png'
+            ];
+
+            // Escolhe um ícone aleatoriamente
+            var randomFavicon = favicons[Math.floor(Math.random() * favicons.length)];
+
+            // Cria a tag link do favicon
+            var link = document.createElement('link');
+            link.rel = 'icon';
+            link.type = 'image/png';
+            link.href = randomFavicon;
+
+            // Adiciona a tag link ao head
+            document.head.appendChild(link);
+        });
+    </script>
+</head>
+
+<body>
+    <main>
+        <div class="container4 fade-in appear">
+            <h1>Login</h1>
+            <br>
+            <form method="POST" action="{{ url_for('main.login') }}">
+                <div>
+                    <h2>Número de Matrícula</h2>
+                    <input type="text" name="matricula" placeholder="Matrícula" required>
+                </div>
+                <div>
+                    <h2>Senha</h2>
+                    <input type="password" name="senha" placeholder="Senha" required>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const faders = document.querySelectorAll('.fade-in');
+            faders.forEach(fader => {
+                fader.classList.add('appear');
+            });
+        });
+    </script>
+</body>
+
+</html>

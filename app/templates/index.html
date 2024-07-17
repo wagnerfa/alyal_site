@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alyal</title>
+    <link rel="stylesheet" href="../static/index.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Lista de ícones disponíveis
+            var favicons = [
+                '../static/heart.png',
+                '../static/heart.png',
+                '../static/heart.png',
+                '../static/heart.png',
+                '../static/heart.png',
+                '../static/broken_heart.png'
+            ];
+
+            // Escolhe um ícone aleatoriamente
+            var randomFavicon = favicons[Math.floor(Math.random() * favicons.length)];
+
+            // Cria a tag link do favicon
+            var link = document.createElement('link');
+            link.rel = 'icon';
+            link.type = 'image/png';
+            link.href = randomFavicon;
+
+            // Adiciona a tag link ao head
+            document.head.appendChild(link);
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Alyal</div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="scroll-link">Início</a></li>
+                    <li><a href="#about" class="scroll-link">Sobre</a></li>
+                    <li><a href="#matriculate" class="scroll-link">Inscrever-se</a></li>
+                    <li><a href="#faqs" class="scroll-link">FAQ's</a></li>
+                    <li><a href="{{ url_for('main.login') }}" target="_blank">Área do aluno <span
+                                class="material-symbols-outlined" style="margin-left: 5px;">
+                                account_circle
+                            </span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <main>
+        <div class="container1 fade-in" id="home">
+            <div class="c1">
+                <h1>Machine Learning</h1>
+                <h2>Aplicado para Negócios</h2>
+                <br>
+                <p>Participe do nosso treinamento <b>presencial</b> e aprenda a desenvolver e aplicar modelos de Machine
+                    Learning em projetos de negócios
+            </div>
+
+            <div class="c2">
+                <img src="../static/barin2.png" alt="Imagem representando Machine Learning">
+            </div>
+        </div>
+
+        <div class="container2 fade-in">
+            <div class="cc2">
+                <h1>Conteúdo Programático</h1>
+                <p>Este curso intensivo cobre os seguintes tópicos, oferecendo uma abordagem prática para capacitar os
+                    profissionais em Machine Learning.</p>
+
+                <p>Capacite-se para evoluir na sua carreira atual ou fazer uma transição para a área de ciência de
+                    dados. Ideal para analistas financeiros, profissionais de TI e qualquer pessoa interessada em
+                    transformar dados em decisões estratégicas.</p>
+            </div>
+
+            <div class="cc1">
+                <div>
+                    <div class="modulos">
+                        <span class="material-symbols-outlined">
+                            menu_book
+                        </span>
+                        <h2>Módulo 1</h2>
+                        <p>Fundamentos de Machine Learning</p>
+                    </div>
+                    <div class="modulos">
+                        <span class="material-symbols-outlined">
+                            calculate
+                        </span>
+                        <h2>Módulo 2</h2>
+                        <p>Algoritmos de Machine Learning com Python</p>
+                    </div>
+                    <div class="modulos">
+                        <span class="material-symbols-outlined">
+                            database
+                        </span>
+                        <h2>Módulo 3</h2>
+                        <p>Machine Learning em Big Data</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="modulos">
+                        <span class="material-symbols-outlined">
+                            waves
+                        </span>
+                        <h2>Módulo 4</h2>
+                        <p>Introdução ao Deep Learning</p>
+                    </div>
+                    <div class="modulos">
+                        <span class="material-symbols-outlined">
+                            tsunami
+                        </span>
+                        <h2>Módulo 5</h2>
+                        <p>Modelos Avançados de Deep Learning</p>
+                    </div>
+                    <div class="modulos">
+                        <span class="material-symbols-outlined">
+                            verified
+                        </span>
+                        <h2>Módulo 6</h2>
+                        <p>Projeto Prático e Apresentação de Resultados</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container3 fade-in" id="about">
+            <h1>Sobre o Instrutor</h1>
+
+            <div class="sobre">
+                <div class="textoSobre">
+
+                    <p>Me chamo Wagner Andrade, sou um profissional de Tecnologia da Informação especializado em Análise
+                        e
+                        Desenvolvimento de Sistemas, atualmente atuando na área de tecnologia em uma cooperativa de
+                        crédito com mais de 50 anos no mercado.
+                        <br><br>
+                        Com 28 anos, tenho uma paixão profunda por tecnologia e me dedico a explorar e implementar
+                        soluções
+                        inovadoras que atendam às complexas necessidades do ambiente empresarial moderno.
+                        Minha expertise inclui habilidades avançadas em machine learning e engenharia de inteligência
+                        artificial, áreas nas quais possuo certificações renomadas, como IBM AI Engineering, Visão
+                        Computacional e Processamento de Imagens, Deep Learning com TensorFlow e PyTorch. Meu foco atual
+                        é o
+                        estudo aprofundado de algoritmos de machine learning, com o objetivo de integrar essa
+                        competência ao
+                        meu repertório técnico para desenvolver soluções baseadas em dados que possam transformar
+                        insights
+                        em ações estratégicas.
+                        <br><br>
+                        Acredito firmemente que a inovação tecnológica é a pedra angular para o avanço de qualquer
+                        setor.
+                        Com isso em mente, esforço-me continuamente para aprimorar minhas habilidades e conhecimentos,
+                        antecipando e enfrentando desafios tecnológicos. Minha busca constante por conhecimento e a
+                        aplicação prática de soluções inovadoras definem o núcleo da minha jornada profissional.
+                    </p>
+                </div>
+
+                <div>
+                    <img src="../static/WagnerAndrade.png" alt="">
+                    <h2>Wagner Andrade</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="container4 fade-in" id="matriculate">
+
+            <h1 id="titulo-pre">Formulário de Pré-Inscrição</h1>
+
+            <div id="pre-inscricao-form" class="pre-inscricao-form">
+
+                <form id="form-pre-inscricao" method="POST" action="{{ url_for('main.index') }}">
+                    <div>
+                        <h2>Nome</h2>
+                        <input type="text" name="nome" id="nome" required>
+                    </div>
+                    <div>
+                        <h2>E-mail</h2>
+                        <input type="email" name="email" id="email" required>
+                    </div>
+                    <div>
+                        <h2>Celular</h2>
+                        <input type="tel" name="telefone" id="telefone" required>
+                    </div>
+                    <button type="submit">Inscrever-se</button>
+                </form>
+            </div>
+            <div id="success-message" style="display: none;" class="mensagemSucesso">
+                <h1>Pré-Inscrição feita com sucesso!</h1>
+
+                <span class="material-symbols-outlined">
+                    verified
+                </span>
+
+                <p>Parabéns! Você deu o primeiro passo para uma carreira de sucesso</p>
+                <p>Nossa equipe entrará em contato em breve para confirmar sua inscrição e fornecer mais detalhes</p>
+            </div>
+        </div>
+
+        <div class="container5 fade-in" id="faqs">
+            <h1>FAQ's</h1>
+            <div class="faqs">
+                <div>
+                    <div class="faq-item">
+                        <h2><span class="material-symbols-outlined">help</span> Preciso ter conhecimento prévio em
+                            programação?</h2>
+                        <p>Não é necessário saber programação, mas é recomendável para melhor aproveitamento do
+                            treinamento.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h2><span class="material-symbols-outlined">help_outline</span> O que preciso para acompanhar o
+                            treinamento?</h2>
+                        <p>Para acompanhar o treinamento, você precisará trazer um notebook e uma conta gratuita no
+                            Google Colab.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="faq-item">
+                        <h2><span class="material-symbols-outlined">help_outline</span> Qual a duração do treinamento?
+                        </h2>
+                        <p>Nosso treinamento tem duração de 18 horas dividídas em 6 dias, 3 vezes por semana 2 semanas
+                        </p>
+                    </div>
+                    <div class="faq-item">
+                        <h2><span class="material-symbols-outlined">help_outline</span> Qual o publico alvo do
+                            treinamento?</h2>
+                        <p>O curso é voltado a toda e qualquer pessoa que queira aprender mais sobre machine learning e
+                            redes neurais</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <p>São José dos Campos, São Paulo, Brasil</p>
+            <p>© 2024 Alyal. Todos os direitos reservados.</p>
+        </div>
+
+        <div class="footer-container">
+            <p>E-mail: <a href="mailto:contato@alyal.com.br">contato@alyal.com.br</a></p>
+        </div>
+        <div class="footer-container">
+            <h2>Redes Sociais</h2>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/wagnerfa/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="@" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('active');
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.scroll-link').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Fade-in effect on scroll
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const appearOnScroll = new IntersectionObserver(function (entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('appear');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        // Highlight form fields on focus
+        const formFields = document.querySelectorAll('form input');
+
+        formFields.forEach(field => {
+            field.addEventListener('focus', () => {
+                field.parentElement.style.transform = 'scale(1.05)';
+                field.parentElement.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+            });
+
+            field.addEventListener('blur', () => {
+                field.parentElement.style.transform = 'scale(1)';
+                field.parentElement.style.boxShadow = 'none';
+            });
+        });
+
+    </script>
+
+    <script>
+        document.getElementById('form-pre-inscricao').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('pre-inscricao-form').style.display = 'none';
+                        document.getElementById('titulo-pre').style.display = 'none';
+                        document.getElementById('success-message').style.display = 'block';
+                    } else {
+                        alert('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.');
+                });
+        });
+    </script>
+
+
+</body>
+
+</html>
