@@ -101,7 +101,7 @@ def admin():
     lembretes = Lembrete.query.order_by(Lembrete.data_lembrete).all()
     return render_template('admin.html', lembretes=lembretes)
 
-
+#teste
 @main.route('/admin/usuarios', methods=['GET', 'POST'])
 @login_required
 @admin_required
