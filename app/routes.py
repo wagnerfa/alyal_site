@@ -9,6 +9,8 @@ import string
 from functools import wraps
 from datetime import datetime
 
+
+
 main = Blueprint('main', __name__)
 
 def gerar_matricula():
@@ -37,12 +39,13 @@ def index():
         nome = request.form.get('nome')
         email = request.form.get('email')
         telefone = request.form.get('telefone')
-        pre_inscricao = PreInscricao(nome=nome, email=email, telefone=telefone)
+        treinamento = request.form.get('treinamento')
+        pre_inscricao = PreInscricao(nome=nome, email=email, telefone=telefone, treinamento=treinamento)
         db.session.add(pre_inscricao)
         db.session.commit()
 
-        titulo = "Pré-inscrição treinamento Machine Learning | Alyal"
-        envio_email(email, titulo, nome)
+        titulo = f"Pré-inscrição treinamento {treinamento.capitalize()} | Alyal"
+        envio_email(email, titulo, nome, treinamento)
 
         return jsonify({'success': True})
 
@@ -192,7 +195,7 @@ def delete_usuario(id):
 @main.route('/aluno')
 @login_required
 def aluno():
-    return render_template('aluno.html')
+    return render_template('aluno_index.html')
 
 @main.route('/admin/pre-inscricoes')
 @login_required
@@ -248,3 +251,35 @@ def excluir_lembrete(id):
     except Exception as e:
         flash('Erro ao excluir o lembrete.', 'danger')
         return redirect(url_for('main.admin_lembretes'))
+
+
+@main.route('/upload-pdf-url', methods=['POST'])
+def upload_pdf_url():
+    try:
+        pdf_url = request.json.get('url')
+        source_id = upload_pdf_via_url(pdf_url)
+        return jsonify({'sourceId': source_id})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@main.route('/upload-pdf-file', methods=['POST'])
+def upload_pdf_file():
+    try:
+        if 'file' not in request.files:
+            return jsonify({'error': 'Nenhum arquivo foi enviado.'}), 400
+
+        file = request.files['file']
+        source_id = upload_pdf_via_file(file)
+        return jsonify({'sourceId': source_id})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@main.route('/chat-with-pdf', methods=['POST'])
+def chat_with_pdf_route():
+    try:
+        source_id = request.json.get('sourceId')
+        user_message = request.json.get('message')
+        bot_response = chat_with_pdf(source_id, user_message)
+        return jsonify({'response': bot_response})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500

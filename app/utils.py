@@ -4,7 +4,7 @@ from email.utils import make_msgid
 import os
 
 
-def envio_email(email, titulo, nome):
+def envio_email(email, titulo, nome, treinamento):
     msg = EmailMessage()
     msg['From'] = 'contato@alyal.com.br'
     msg['To'] = email
@@ -28,7 +28,7 @@ def envio_email(email, titulo, nome):
     </head>
     <body>
         <p>Parabéns <strong>{nome}</strong>!</p>
-        <p>Sua pré-inscrição em nosso treinamento em machine learning foi realizada com sucesso.</p>
+        <p>Sua pré-inscrição em nosso treinamento <strong>{treinamento}</strong> foi realizada com sucesso.</p>
         <p>Estamos entusiasmados com sua decisão de aprimorar seus conhecimentos e habilidades nessa área inovadora. Nossa equipe entrará em contato com você o mais breve possível para confirmar seus dados e finalizar sua inscrição</p>
         <p>Seja bem-vindo à nossa comunidade de aprendizagem! Estamos ansiosos para ajudá-lo a alcançar seus objetivos</p>
         <br>

@@ -28,6 +28,7 @@ class Usuario(db.Model, UserMixin):
 class PreInscricao(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), nullable=False)
+    treinamento = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(120), nullable=False)
     telefone = db.Column(db.String(20), nullable=False)
     data_inscricao = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
