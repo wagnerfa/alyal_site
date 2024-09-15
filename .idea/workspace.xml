@@ -5,24 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe1ba7af-38e5-4d33-b28b-9195b984b8ed" name="Changes" comment="Teste">
-      <change afterPath="$PROJECT_DIR$/app/static/artificial-intelligence.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/python.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/static/treinamentoPython.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/templates/treinamentoPython.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/routes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/admin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/static/barin2.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/barin2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/static/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/aluno.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/instance/site.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/README" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/alembic.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/env.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/script.py.mako" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/89222ce6691a_inicializar_migrações.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/baf9d1e2ab8e_adição_lembretes.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -175,22 +163,20 @@
       <option name="project" value="LOCAL" />
       <updated>1721186074571</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Teste">
+      <option name="closed" value="true" />
+      <created>1725279193281</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1725279193281</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Segundo commit" />
     <MESSAGE value="Teste" />
     <option name="LAST_COMMIT_MESSAGE" value="Teste" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app/routes.py</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

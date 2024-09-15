@@ -8,6 +8,7 @@ import random
 import string
 from functools import wraps
 from datetime import datetime
+import datetime
 
 
 
@@ -50,6 +51,29 @@ def index():
         return jsonify({'success': True})
 
     return render_template('index.html')
+
+
+@main.route('/treinamento/python', methods=['GET', 'POST'])
+def treinamentoPython():
+    if request.method == 'POST':
+        nome = request.form.get('nome')
+        email = request.form.get('email')
+        telefone = request.form.get('telefone')
+        treinamento = 'Python'  # Já que esta rota é específica para Python
+        pre_inscricao = PreInscricao(nome=nome, email=email, telefone=telefone, treinamento=treinamento)
+        db.session.add(pre_inscricao)
+        db.session.commit()
+
+        titulo = f"Pré-inscrição treinamento {treinamento} | Alyal"
+        envio_email(email, titulo, nome, treinamento)
+
+        return jsonify({'success': True})
+
+    # Definir a data de término da oferta (por exemplo, em 5 dias)
+    offer_end_date = datetime.datetime(2024, 10, 15, 23, 59, 59)  # Ajuste para a data desejada
+    offer_end_timestamp = int(offer_end_date.timestamp() * 1000)  # Converter para milissegundos
+
+    return render_template('treinamentoPython.html', offer_end_timestamp=offer_end_timestamp)
 
 
 @main.route('/login', methods=['GET', 'POST'])

@@ -252,7 +252,7 @@
 
                     <p class="a-vista2"><strong>R$2000 à vista</strong><br><span class="desconto">8% OFF</span></p>
                 </div>
-                
+
             </div>
         </div>
 
@@ -364,6 +364,19 @@
             </div>
         </div>
     </main>
+
+    <!-- Ícone flutuante do WhatsApp com botão de fechar sobreposto -->
+    <div class="whatsapp-container">
+        <a href="https://wa.me/5512992231323" class="whatsapp-float" target="_blank">
+            <span class="whatsapp-text">Posso Ajudar?</span>
+            <div class="whatsapp-icon-wrapper">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/WhatsApp_icon.png/598px-WhatsApp_icon.png"
+                    alt="WhatsApp" class="whatsapp-icon">
+            </div>
+        </a>
+        <span class="whatsapp-close">&times;</span>
+    </div>
+
     <!--
     <div id="videoModal" class="modal">
         <div class="modal-content">
@@ -397,6 +410,14 @@
         </div>
 
     </footer>
+
+    <script>
+        document.querySelector('.whatsapp-close').addEventListener('click', function () {
+            document.querySelector('.whatsapp-container').classList.add('whatsapp-hidden');
+        });
+    </script>
+
+
 
     <script>
         function toggleMenu() {

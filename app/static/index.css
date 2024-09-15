@@ -598,6 +598,98 @@ footer {
     display: none;
 }
 
+/* Container do ícone e texto */
+.whatsapp-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+    background-color: #ffffff;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+/* Ícone flutuante */
+.whatsapp-float {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+    transition: all 0.3s ease;
+}
+
+/* Texto ao lado do ícone */
+.whatsapp-text {
+    margin-right: 10px;
+    font-size: 16px;
+    color: #333;
+    font-family: "Montserrat", sans-serif;
+}
+
+/* Estilo do ícone */
+.whatsapp-icon-wrapper {
+    position: relative;
+}
+
+.whatsapp-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Botão de fechar sobreposto */
+.whatsapp-close {
+    position: absolute;
+    top: -10px;
+    right: -13px;
+    font-size: 14px;
+    color: #ff5b5b;
+    background-color: #ffffffb4;
+    border: 1px solid #ff5b5b;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+}
+
+.whatsapp-close:hover {
+    background-color: #ff5b5b;
+    color: #fff;
+}
+
+/* Animação de pulo */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Aplicar a animação de pulo a cada 3 segundos */
+.whatsapp-container {
+    animation: bounce 1s infinite 3s;
+}
+
+/* Efeito hover no botão do WhatsApp */
+
+/* Ocultar o container de WhatsApp quando o botão de fechar for clicado */
+.whatsapp-hidden {
+    display: none;
+}
+
 
 @media (max-width: 768px) {
     .carousel-item {
