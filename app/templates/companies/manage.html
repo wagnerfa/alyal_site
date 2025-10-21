@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Empresas - Alyal Analytics{% endblock %}
+
+{% block content %}
+<section class="companies-wrapper">
+    <header class="panel">
+        <h2>Cadastro de empresas</h2>
+        <p>Crie o espaço de cada cliente e defina quem terá acesso às informações e dashboards.</p>
+        <form id="createCompanyForm" class="company-form" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="companyName">Nome da empresa</label>
+                <div class="input-wrapper">
+                    <input type="text" id="companyName" name="name" placeholder="Ex.: Loja Estrela" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="companyDescription">Descrição</label>
+                <div class="input-wrapper">
+                    <textarea id="companyDescription" name="description" rows="3" placeholder="Resumo, canais de venda ou observações relevantes"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="companyLogo">Logotipo da empresa</label>
+                <div class="input-wrapper">
+                    <input type="file" id="companyLogo" name="logo" accept="image/*">
+                </div>
+                <p class="form-note">Formatos suportados: PNG, JPG, SVG ou WEBP.</p>
+            </div>
+            <button type="submit" class="btn-primary">
+                <span>Cadastrar empresa</span>
+                <div class="loader"></div>
+            </button>
+        </form>
+    </header>
+
+    <section class="panel">
+        <h2>Empresas cadastradas</h2>
+        {% if companies %}
+            <div class="company-list">
+                {% for company in companies %}
+                    {% set logo_url = company.logo_path and url_for('static', filename=company.logo_path) %}
+                    {% set company_payload = {
+                        'id': company.id,
+                        'name': company.name,
+                        'description': company.description or '',
+                        'createdAt': company.created_at.strftime('%d/%m/%Y'),
+                        'logoUrl': logo_url,
+                        'clients': [
+                            {
+                                'membership_id': membership.id,
+                                'user_id': membership.user.id,
+                                'username': membership.user.username,
+                                'email': membership.user.email,
+                                'role': membership.role,
+                                'invited_at': membership.invited_at.strftime('%d/%m/%Y')
+                            } for membership in company.clients
+                        ]
+                    } %}
+                    <button type="button" class="company-entry" data-company='{{ company_payload|tojson }}'>
+                        <div class="company-logo">
+                            {% if logo_url %}
+                                <img src="{{ logo_url }}" alt="Logotipo {{ company.name }}">
+                            {% else %}
+                                {{ company.name[0:2].upper() }}
+                            {% endif %}
+                        </div>
+                        <div class="company-info">
+                            <h3>{{ company.name }}</h3>
+                            <p>{{ company.description or 'Sem descrição cadastrada.' }}</p>
+                            <div class="company-meta">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
+                                    </svg>
+                                    {{ company.clients|length }} clientes
+                                </span>
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+                                        <path d="M21 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"></path>
+                                        <path d="M12 6v6l3 3"></path>
+                                    </svg>
+                                    Desde {{ company.created_at.strftime('%d/%m/%Y') }}
+                                </span>
+                            </div>
+                        </div>
+                        <span class="badge">Gerenciar</span>
+                    </button>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="company-list-empty">
+                <p>Nenhuma empresa cadastrada até o momento. Utilize o formulário acima para começar.</p>
+            </div>
+        {% endif %}
+    </section>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/companies.js') }}" defer></script>
+{% endblock %}

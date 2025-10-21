@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, request, jsonify
 from flask_login import login_user, logout_user, current_user
 from app import db
-from app.models.user import User
+from app.models.user import ROLE_GESTOR, User
 import re
 
 bp = Blueprint('auth', __name__)
@@ -52,7 +52,6 @@ def register():
         email = data.get('email', '').strip()
         password = data.get('password', '')
         confirm_password = data.get('confirm_password', '')
-
         # Validações
         if not username or not email or not password or not confirm_password:
             return jsonify({'success': False, 'message': 'Preencha todos os campos'}), 400
@@ -78,6 +77,7 @@ def register():
 
         # Criar novo usuário
         user = User(username=username, email=email)
+        user.set_role(ROLE_GESTOR)
         user.set_password(password)
         db.session.add(user)
         db.session.commit()

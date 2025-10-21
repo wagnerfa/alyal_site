@@ -11,14 +11,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Adicionar animação de foco nos inputs
-    const inputs = document.querySelectorAll('input');
-    inputs.forEach(input => {
-        input.addEventListener('focus', function() {
-            this.parentElement.style.transform = 'scale(1.02)';
+    const fields = document.querySelectorAll('input');
+    fields.forEach(field => {
+        field.addEventListener('focus', function() {
+            if (this.parentElement.classList.contains('input-wrapper')) {
+                this.parentElement.style.transform = 'scale(1.02)';
+            }
         });
 
-        input.addEventListener('blur', function() {
-            this.parentElement.style.transform = 'scale(1)';
+        field.addEventListener('blur', function() {
+            if (this.parentElement.classList.contains('input-wrapper')) {
+                this.parentElement.style.transform = 'scale(1)';
+            }
         });
     });
 });

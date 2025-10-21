@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard do Gestor - Alyal Analytics{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <h2>Painel do Gestor</h2>
+            <p class="subtitle">Visão geral das empresas e clientes conectados</p>
+        </div>
+        <div class="navbar-menu">
+            <div class="user-info">
+                <div class="user-avatar">{{ current_user.username[0:2].upper() }}</div>
+                <span>{{ current_user.username }}</span>
+            </div>
+            <a href="{{ url_for('companies.index') }}" class="btn-light">Gerenciar empresas</a>
+            <a href="{{ url_for('auth.logout') }}" class="btn-logout">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                Sair
+            </a>
+        </div>
+    </nav>
+
+    <div class="dashboard-content">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span>Empresas cadastradas</span>
+                <strong>{{ total_companies }}</strong>
+            </div>
+            <div class="stat-card">
+                <span>Clientes vinculados</span>
+                <strong>{{ total_memberships }}</strong>
+            </div>
+            <div class="stat-card">
+                <span>Clientes únicos</span>
+                <strong>{{ unique_clients }}</strong>
+            </div>
+        </div>
+
+        <section class="panel">
+            <h2>Empresas recentes</h2>
+            {% if latest_companies %}
+                <div class="timeline">
+                    {% for company in latest_companies %}
+                    <div class="timeline-item">
+                        <div>
+                            <h4>{{ company.name }}</h4>
+                            <p>{{ company.description or 'Sem descrição cadastrada.' }}</p>
+                        </div>
+                        <span>{{ company.created_at.strftime('%d/%m/%Y') }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>Ainda não há empresas cadastradas. Comece adicionando sua primeira empresa.</p>
+            {% endif %}
+        </section>
+
+        <section class="panel">
+            <h2>Comece por aqui</h2>
+            <div class="cards-grid">
+                <div class="card appear">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect>
+                            <path d="M3 9h18"></path>
+                        </svg>
+                    </div>
+                    <h3>Cadastrar nova empresa</h3>
+                    <p>Defina o espaço de trabalho da loja e convide clientes para acompanhar seus resultados.</p>
+                    <div class="card-stats"><a href="{{ url_for('companies.index') }}">Abrir gestão de empresas</a></div>
+                </div>
+                <div class="card appear">
+                    <div class="card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0z"></path>
+                            <path d="M12 2v2"></path>
+                            <path d="m19.07 4.93-1.41 1.41"></path>
+                            <path d="M22 12h-2"></path>
+                            <path d="m19.07 19.07-1.41-1.41"></path>
+                            <path d="M12 20v2"></path>
+                            <path d="m6.34 17.66-1.41 1.41"></path>
+                            <path d="M4 12H2"></path>
+                            <path d="m6.34 6.34-1.41-1.41"></path>
+                        </svg>
+                    </div>
+                    <h3>Compartilhar insights</h3>
+                    <p>Organize relatórios por período e mantenha os clientes atualizados sobre os resultados.</p>
+                    <div class="card-stats">Funcionalidade em desenvolvimento</div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}" defer></script>
+{% endblock %}

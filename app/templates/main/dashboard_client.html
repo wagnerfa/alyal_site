@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard do Cliente - Alyal Analytics{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <h2>Bem-vindo, {{ current_user.username }}!</h2>
+            <p class="subtitle">Acompanhe seus indicadores e atualizações</p>
+        </div>
+        <div class="navbar-menu">
+            <div class="user-info">
+                <div class="user-avatar">{{ current_user.username[0:2].upper() }}</div>
+                <span>{{ current_user.email }}</span>
+            </div>
+            <a href="{{ url_for('auth.logout') }}" class="btn-logout">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+                Sair
+            </a>
+        </div>
+    </nav>
+
+    <div class="dashboard-content">
+        <div class="cards-grid">
+            <div class="card appear">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <h3>Perfil</h3>
+                <p>Suas informações e acesso às empresas conectadas.</p>
+                <div class="card-stats">{{ memberships|length }} empresas vinculadas</div>
+            </div>
+            <div class="card appear">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="4 17 10 11 13 14 20 7"></polyline>
+                        <polyline points="4 7 10 13 13 10 20 17"></polyline>
+                    </svg>
+                </div>
+                <h3>Status</h3>
+                <p>Acesso atualizado e pronto para acompanhar as métricas enviadas pelo time.</p>
+                <div class="card-stats">Último acesso: {{ current_user.created_at.strftime('%d/%m/%Y') }}</div>
+            </div>
+            <div class="card appear">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                </div>
+                <h3>Próximos relatórios</h3>
+                <p>Fique atento às novas atualizações de vendas e canais cadastrados pelos gestores.</p>
+                <div class="card-stats">Notificações serão exibidas aqui</div>
+            </div>
+        </div>
+
+        <section class="panel">
+            <h2>Empresas vinculadas</h2>
+            {% if memberships %}
+                <div class="timeline">
+                    {% for membership in memberships %}
+                    <div class="timeline-item">
+                        <div>
+                            <h4>{{ membership.company.name }}</h4>
+                            <p>{{ membership.company.description or 'Aguardando descrição da empresa.' }}</p>
+                        </div>
+                        <span>Desde {{ membership.invited_at.strftime('%d/%m/%Y') }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>Você ainda não possui nenhuma empresa conectada. Aguarde o convite do seu gestor.</p>
+            {% endif %}
+        </section>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}" defer></script>
+{% endblock %}
