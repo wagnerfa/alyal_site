@@ -11,14 +11,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Adicionar animação de foco nos inputs
-    const inputs = document.querySelectorAll('input');
-    inputs.forEach(input => {
-        input.addEventListener('focus', function() {
-            this.parentElement.style.transform = 'scale(1.02)';
+    const fields = document.querySelectorAll('input, select');
+    fields.forEach(field => {
+        field.addEventListener('focus', function() {
+            if (this.parentElement.classList.contains('input-wrapper')) {
+                this.parentElement.style.transform = 'scale(1.02)';
+            }
         });
 
-        input.addEventListener('blur', function() {
-            this.parentElement.style.transform = 'scale(1)';
+        field.addEventListener('blur', function() {
+            if (this.parentElement.classList.contains('input-wrapper')) {
+                this.parentElement.style.transform = 'scale(1)';
+            }
         });
     });
 });
@@ -77,7 +81,8 @@ async function handleRegister(e) {
         username: form.username.value,
         email: form.email.value,
         password: form.password.value,
-        confirm_password: form.confirm_password.value
+        confirm_password: form.confirm_password.value,
+        role: form.role.value
     };
 
     // Mostrar loading
