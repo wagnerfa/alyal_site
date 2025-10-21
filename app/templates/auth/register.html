@@ -40,7 +40,25 @@
                     <input type="email" id="email" name="email" placeholder="seu@email.com" required>
                 </div>
             </div>
-            
+
+            <div class="form-group">
+                <label for="role">Perfil de acesso</label>
+                <div class="input-wrapper select-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z"></path>
+                        <path d="M6.5 18c.84-1.19 2.34-2 4-2s3.16.81 4 2"></path>
+                        <path d="M18 20l3-3-3-3"></path>
+                        <path d="M21 17h-6"></path>
+                    </svg>
+                    <select id="role" name="role" required>
+                        <option value="gestor" selected>Gestor</option>
+                        <option value="analista">Analista</option>
+                        <option value="cliente">Cliente</option>
+                    </select>
+                </div>
+                <p class="input-hint">Clientes também podem ser cadastrados diretamente pelas empresas.</p>
+            </div>
+
             <div class="form-group">
                 <label for="password">Senha</label>
                 <div class="input-wrapper">

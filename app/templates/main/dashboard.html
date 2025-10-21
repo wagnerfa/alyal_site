@@ -27,9 +27,9 @@
     <div class="dashboard-content">
         <div class="welcome-section">
             <h1 class="animated-title">Olá, {{ current_user.username }}! 👋</h1>
-            <p class="subtitle">Bem-vindo ao seu painel de controle</p>
+            <p class="subtitle">Bem-vindo ao seu painel de controle — perfil {{ current_user.role|capitalize }}</p>
         </div>
-        
+
         <div class="cards-grid">
             <div class="card card-1">
                 <div class="card-icon">
@@ -87,6 +87,24 @@
                     <span>Em breve...</span>
                 </div>
             </div>
+
+            {% if current_user.is_manager %}
+            <div class="card card-5">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 3h18v18H3z"></path>
+                        <path d="M3 9h18"></path>
+                        <path d="M9 21V9"></path>
+                        <path d="M12 12h6"></path>
+                    </svg>
+                </div>
+                <h3>Empresas & Clientes</h3>
+                <p>Cadastre empresas e controle acessos de clientes</p>
+                <div class="card-stats">
+                    <a href="{{ url_for('companies.index') }}" class="ghost-button">Gerenciar agora</a>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
